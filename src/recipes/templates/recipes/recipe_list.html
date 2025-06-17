@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recipes Overview</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ff7f32; /* warm medium orange */
+      padding: 20px;
+      color: #5a2e00; /* dark burnt orange text for contrast */
+    }
+    h1 {
+      text-align: center;
+      color: #fff3e0; /* light peach for contrast */
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    table {
+      width: 80%;
+      margin: auto;
+      border-collapse: collapse;
+      background-color: #fff3e0; /* very light peach background for table */
+      box-shadow: 0 4px 12px rgba(255,127,50,0.3); /* subtle orange shadow */
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid #f0a868;
+      padding: 12px 15px;
+      text-align: center;
+      vertical-align: middle;
+      color: #5a2e00; /* keep text dark inside table */
+    }
+    th {
+      background-color: #d96120; /* burnt orange */
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    a {
+      color: #d96120; /* burnt orange links */
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #b34a12;
+    }
+    img {
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(217, 97, 32, 0.2);
+      max-width: 150px;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(217, 97, 32, 0.4);
+    }
+    @media (max-width: 600px) {
+      table {
+        width: 100%;
+      }
+      img {
+        max-width: 100px;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Recipes Overview</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Recipe Title</th>
+        <th>Recipe Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for recipe in recipes %}
+      <tr>
+        <td><a href="{% url 'recipes:recipe_detail' recipe.pk %}">{{ recipe.title }}</a></td>
+        <td>
+          <a href="{% url 'recipes:recipe_detail' recipe.pk %}">
+            <img src="{{ recipe.pic.url }}" alt="{{ recipe.title }}" />
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

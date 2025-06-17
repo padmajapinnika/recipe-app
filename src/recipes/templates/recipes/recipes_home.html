@@ -1,10 +1,110 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome to Recipe App</title>
+  <meta charset="UTF-8" />
+  <title>Welcome to My Recipe App</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-color: #fff4e6; /* soft light orange background */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3.5rem;
+      color: #ff6600; /* bright orange */
+      font-weight: bold;
+    }
+
+    header p {
+      font-size: 1.4rem;
+      margin-top: 12px;
+      color: #cc5200; /* darker orange */
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto 60px;
+      padding: 40px 20px;
+      text-align: center;
+      background: #ffe6cc; /* warm light orange panel */
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(255, 128, 0, 0.2);
+    }
+
+    main p {
+      font-size: 1.3rem;
+      margin-bottom: 24px;
+      color: #804000; /* rich brown-orange text */
+    }
+
+    a.button {
+      display: inline-block;
+      background-color: #ff6600;
+      color: #fff;
+      padding: 16px 36px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(255,102,0,0.6);
+      font-weight: bold;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #e65c00;
+      box-shadow: 0 6px 16px rgba(230, 92, 0, 0.8);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 1rem;
+      color: #cc5200;
+      background: #fff4e6;
+      margin-top: auto;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.4rem;
+      }
+      main p {
+        font-size: 1.1rem;
+      }
+      a.button {
+        padding: 14px 28px;
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to the Recipe App!</h1>
-    <p>Explore delicious recipes made easy.</p>
+  <header>
+    <h1>Welcome to My Recipe Collection</h1>
+    <p>Discover delicious recipes to cook every day</p>
+  </header>
+
+  <main>
+    <p>Browse through a variety of recipes — from quick breakfasts to hearty dinners and everything in between.</p>
+    <a href="{% url 'recipes:recipe_list' %}" class="button">View All Recipes</a>
+  </main>
+
+  <footer>
+    &copy; 2025 My Recipe App. All rights reserved.
+  </footer>
 </body>
 </html>

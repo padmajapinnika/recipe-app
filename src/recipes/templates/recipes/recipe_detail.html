@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ recipe.title }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f6e1d3; /* very light warm peach */
+      color: #3a2e2e; /* dark brown for text */
+    }
+    .container {
+      background-color: #d96120; /* warm burnt orange */
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(217, 97, 32, 0.4);
+      color: #fff; /* white text for contrast */
+    }
+    img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      display: block;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    h1 {
+      color: #fff3e0; /* pale orange */
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      color: #ffb07c; /* soft peach */
+    }
+    ul {
+      padding-left: 1.2rem;
+      color: #ffe8d1; /* light peach */
+    }
+    li {
+      line-height: 1.6;
+    }
+    p strong {
+      color: #fff; /* highlight labels in white */
+    }
+    a {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #ff7f32; /* bright orange */
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      box-shadow: 0 3px 8px rgba(255,127,50,0.6);
+      transition: background-color 0.3s ease;
+    }
+    a:hover {
+      background-color: #e76e28; /* darker orange */
+      box-shadow: 0 4px 12px rgba(231,110,40,0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>{{ recipe.title }}</h1>
+    <img src="{{ recipe.pic.url }}" alt="{{ recipe.title }}" />
+
+    <p><strong>Description:</strong> {{ recipe.description }}</p>
+    <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
+    <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+
+    <h2>Ingredients</h2>
+    <ul>
+      {% for ri in recipe.recipe_ingredients.all %}
+        <li>{{ ri.ingredient.name }}</li>
+      {% empty %}
+        <li>No ingredients found.</li>
+      {% endfor %}
+    </ul>
+
+    <a href="{% url 'recipes:recipe_list' %}">← Back to Recipes List</a>
+  </div>
+</body>
+</html>
