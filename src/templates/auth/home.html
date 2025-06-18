@@ -1,0 +1,124 @@
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(135deg, #FF7E5F, #FEB47B);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .login-container {
+    background: white;
+    padding: 2.5rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(255, 126, 95, 0.3);
+    width: 360px;
+    text-align: center;
+  }
+
+  h2 {
+    color: #FF6F3C;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  p.welcome-text {
+    color: #ff7a33;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  p.login-instruction {
+    color: #b3531a;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  form p {
+    margin: 0;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 0.7rem 1rem;
+    border: 2px solid #FF9A6B;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #FF6F3C;
+    outline: none;
+  }
+
+  button {
+    background-color: #FF6F3C;
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #e65b29;
+  }
+
+  .error-message {
+    color: #cc3300;
+    background-color: #ffd9cc;
+    padding: 0.7rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .logout-button {
+    margin-top: 1rem;
+    background-color: #FF5722;
+  }
+
+  .logout-button:hover {
+    background-color: #e64a19;
+  }
+</style>
+
+<div class="login-container">
+  <h2>Welcome Back!</h2>
+  <p class="welcome-text">Access your favorite recipes and cooking tips all in one place.</p>
+  
+
+  {% if error_message %}
+    <div class="error-message">{{ error_message }}</div>
+  {% endif %}
+
+  {% if request.user.is_authenticated %}
+    <p>You are logged in as <strong>{{ request.user.username }}</strong>.</p>
+    <form method="post" action="{% url 'recipes:logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="logout-button">Logout</button>
+    </form>
+  {% else %}
+    <form method="post" action="{% url 'recipes:login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Login</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

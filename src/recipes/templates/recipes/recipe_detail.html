@@ -18,6 +18,7 @@
       margin: auto;
       box-shadow: 0 4px 12px rgba(217, 97, 32, 0.4);
       color: #fff; /* white text for contrast */
+      position: relative; /* for positioning logout */
     }
     img {
       width: 100%;
@@ -61,10 +62,37 @@
       background-color: #e76e28; /* darker orange */
       box-shadow: 0 4px 12px rgba(231,110,40,0.8);
     }
+
+    /* Logout button styles and positioning */
+    form.logout-form {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      margin: 0;
+    }
+    form.logout-form button {
+      background-color: #b34a12;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    form.logout-form button:hover {
+      background-color: #8c390e;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Logout form top right -->
+    <form class="logout-form" action="{% url 'recipes:logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" aria-label="Logout">Logout</button>
+    </form>
+
     <h1>{{ recipe.title }}</h1>
     <img src="{{ recipe.pic.url }}" alt="{{ recipe.title }}" />
 

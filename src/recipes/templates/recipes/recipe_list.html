@@ -10,11 +10,31 @@
       padding: 20px;
       color: #5a2e00; /* dark burnt orange text for contrast */
     }
-    h1 {
-      text-align: center;
-      color: #fff3e0; /* light peach for contrast */
+    header {
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      max-width: 80%; 
+      margin: auto 10%;
       margin-bottom: 1.5rem;
+    }
+    h1 {
+      color: #fff3e0; /* light peach for contrast */
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      margin: 0;
+    }
+    button {
+      background-color: #d96120; /* burnt orange */
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #b34a12;
     }
     table {
       width: 80%;
@@ -68,11 +88,33 @@
         max-width: 100px;
         height: auto;
       }
+      header {
+        flex-direction: column;
+        margin: auto 5%;
+      }
+      button {
+        margin-top: 10px;
+        width: 100%;
+      }
+    }
+    footer {
+      text-align:center; 
+      padding: 15px; 
+      margin-top: 30px; 
+      color: #fff3e0; 
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <h1>Recipes Overview</h1>
+  <header>
+    <h1>Recipes Overview</h1>
+    <form action="{% url 'recipes:logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+  </header>
+
   <table>
     <thead>
       <tr>
@@ -93,5 +135,9 @@
       {% endfor %}
     </tbody>
   </table>
+
+  <footer>
+    &copy; 2025 Recipe App — Made with ❤️ by Padmaja
+  </footer>
 </body>
 </html>
